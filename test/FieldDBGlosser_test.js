@@ -27,11 +27,46 @@ exports['init'] = {
     // setup here
     done();
   },
-  'no args': function(test) {
+  'guessUtteranceFromMorphemes': function(test) {
     test.expect(1);
     // tests here
-    console.log(Glosser);
-    test.equal(Glosser.init(), 'init', 'should be init.');
+    try {
+      var glosser = new Glosser();
+      var igt = glosser.guessUtteranceFromMorphemes({
+        utterance: "",
+        morphemes: "Kicha-nay-wa-n punqo-ta",
+        allomorphs: "",
+        gloss: "open-DES-1OM-3SG door-ACC",
+        translation: "I feel like opening the door."
+      });
+      // console.log(igt);
+      test.equal(igt.utterance, 'Kichanaywan punqota', 'should be Kichanaywan punqota.');
+      test.done();
+
+    } catch (e) {
+      console.log(e);
+      test.equal(e, 'Kichanaywan punqota', 'should be Kichanaywan punqota.');
+      test.done();
+    }
+  },
+
+  'downloadPrecedenceRules': function(test) {
+    test.expect(1);
+    // tests here
+    try {
+      var glosser = new Glosser();
+      glosser.downloadPrecedenceRules("public-firstcorpus", "https://corpusdev.lingsync.org/public-firstcorpus/_design/pages/_view/precedence_rules?group=true", function() {
+        console.log('Completed');
+        test.equal('Completed', 'Completed', 'should be Completed.');
+        test.done();
+      });
+
+    } catch (e) {
+      console.log(e);
+      test.equal(e, 'Kichanaywan punqota', 'should be Kichanaywan punqota.');
+      test.done();
+    }
+    test.equal('Async', 'Async', 'should be Async.');
     test.done();
   }
 };
