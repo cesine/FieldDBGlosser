@@ -1,6 +1,6 @@
 {
   "name": "fielddb-glosser",
-  "version": "1.82.1",
+  "version": "1.82.2",
   "authors": [
     "info@fielddb.org"
   ],
@@ -27,6 +27,6 @@
   ],
   "dependencies": {
     "d3": "~3.3.10",
-    "underscore": "~1.5.2"
+    "underscore": "~1.6.0"
   }
 }
