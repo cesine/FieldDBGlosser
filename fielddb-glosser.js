@@ -1,6 +1,6 @@
-/*! fielddb-glosser - v1.82.0 - 2013-11-29
+/*! fielddb-glosser - v1.82.0 - 2014-10-07
 * https://github.com/OpenSourceFieldlinguistics/FieldDB/issues/milestones?state=closed
-* Copyright (c) 2013 FieldDB Contributors; Licensed Apache 2.0 */
+* Copyright (c) 2014 FieldDB Contributors; Licensed Apache 2.0 */
 // var d3 = require("d3");
 // var _ = require("underscore");
 /*
@@ -311,11 +311,11 @@
 
         var matchingNodes = [];
         var node = lexiconNodes[morphemes[m]];
-        if(node){
+        if(node && node[0] && node[0].gloss){
           matchingNodes.push(node);
         }
         node = lexiconNodes[morphemes[m].toLowerCase()];
-        if(node){
+        if(node && node[0] && node[0].gloss){
           matchingNodes.push(node);
         }
         var gloss = "?"; // If there's no matching gloss, use question marks
