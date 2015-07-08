@@ -19,7 +19,7 @@ var loadExamples = function() {
     }
   };
 
-  var url = "https://localhost:6984";
+  var url = "http://localhost:5984";
   // var firstdb = "elisekm-eti3_data_tutorial";
   // var firstGlosser = new Glosser({
   //   pouchname: firstdb
@@ -51,7 +51,7 @@ var loadExamples = function() {
   //   renderFirstGraph();
   // });
 
-  var seconddb = "nemo814-group_data_entry_tutorial";
+  var seconddb = "chuj-shared";
   var secondGlosser = new Glosser({
     pouchname: seconddb
   });

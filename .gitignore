@@ -14,3 +14,7 @@ results
 npm-debug.log
 node_modules
 bower_components
+fielddb-glosser.js
+fielddb-glosser.min.js
+samples/vanilla/fielddb-glosser.js
+fielddb-glosser.js
