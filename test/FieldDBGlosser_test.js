@@ -4,7 +4,8 @@ try {
   Glosser = require('../lib/FieldDBGlosser.js').Glosser;
 } catch (e) {
   console.warn("Caught error\n",e.stack);
-} // var lexiconFactory = require('../lib/Lexicon.js').LexiconFactory;
+} 
+var lexiconFactory = require('../lib/Lexicon.js').LexiconFactory;
 
 var XMLHttpRequestNode = require("xmlhttprequest").XMLHttpRequest;
 
