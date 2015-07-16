@@ -1,6 +1,10 @@
 'use strict';
-
-var Glosser = require('../lib/FieldDBGlosser.js').Glosser;
+var Glosser;
+try {
+  Glosser = require('../lib/FieldDBGlosser.js').Glosser;
+} catch (e) {
+  console.warn("Caught error\n",e.stack);
+} 
 var lexiconFactory = require('../lib/Lexicon.js').LexiconFactory;
 
 var XMLHttpRequestNode = require("xmlhttprequest").XMLHttpRequest;
@@ -31,6 +35,55 @@ exports['init'] = {
     done();
   },
 
+  'isMorphemeWithinConfidenceRange': function(test) {
+    test.expect(6);
+    // tests here
+    try {
+      var glosser = new Glosser({
+         XMLHttpRequestLocal: XMLHttpRequestNode
+      });
+      var mediumHighConfidenceRange = {
+        min: 0.5,
+        max: 0.9
+      };
+      var filterForUncleanMorphemes = {
+        min: 0,
+        max: 0.4
+      };
+
+      var confidentIGT = {
+        "morphemes": "'p",
+        "gloss": "past",
+        "utterance": "maqutmg'p",
+        "confidence": 1
+      };
+      var mediumConfidentIGT = {
+        "morphemes": "'p",
+        "gloss": "past",
+        "utterance": "maqutmg'p",
+        "confidence": 0.6
+      };
+      var notConfidentIGT = {
+        "morphemes": "'p",
+        "gloss": "past",
+        "utterance": "maqutmg'p",
+        "confidence": 0.1
+      };
+
+      // console.log(confidentIGT);
+      test.equal(glosser.isWithinConfidenceRange(confidentIGT, mediumHighConfidenceRange), false);
+      test.equal(glosser.isWithinConfidenceRange(mediumConfidentIGT, mediumHighConfidenceRange), true);
+      test.equal(glosser.isWithinConfidenceRange(notConfidentIGT, mediumHighConfidenceRange), false);
+
+      test.equal(glosser.isWithinConfidenceRange(confidentIGT, filterForUncleanMorphemes), false);
+      test.equal(glosser.isWithinConfidenceRange(mediumConfidentIGT, filterForUncleanMorphemes), false);
+      test.equal(glosser.isWithinConfidenceRange(notConfidentIGT, filterForUncleanMorphemes), true);
+      test.done();
+
+    } catch (e) {
+      console.log(e.stack);
+    }
+  },
 
   'guessUtteranceFromMorphemes': function(test) {
     test.expect(1);
