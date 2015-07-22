@@ -5,7 +5,7 @@ try {
 } catch (e) {
   console.warn("Caught error\n",e.stack);
 } 
-var lexiconFactory = require('../lib/Lexicon.js').LexiconFactory;
+var lexiconFactory = require('../lib/Lexicon.js').Lexicon.LexiconFactory;
 
 var XMLHttpRequestNode = require("xmlhttprequest").XMLHttpRequest;
 
