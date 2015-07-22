@@ -92,15 +92,15 @@ exports['init'] = {
       var glosser = new Glosser({
         XMLHttpRequestLocal: XMLHttpRequestNode
       });
-      var igt = glosser.guessUtteranceFromMorphemes({
+      var fields = glosser.guessUtteranceFromMorphemes({
         utterance: "",
         morphemes: "Kicha-nay-wa-n punqo-ta",
         allomorphs: "",
         gloss: "open-DES-1OM-3SG door-ACC",
         translation: "I feel like opening the door."
       });
-      // console.log(igt);
-      test.equal(igt.utterance, 'Kichanaywan punqota', 'should be Kichanaywan punqota.');
+      // console.log(fields);
+      test.equal(fields.utterance, 'Kichanaywan punqota', 'should be Kichanaywan punqota.');
       test.done();
 
     } catch (e) {
@@ -119,7 +119,7 @@ exports['init'] = {
       pouchname: pouchname
     });
 
-    var igt = glosser.guessGlossFromMorphemes({
+    var fields = glosser.guessGlossFromMorphemes({
       "utterance": "maqutmg'p",
       "utterancefield": "field1",
       "morphemes": "maqu-tm-g-'p",
@@ -128,8 +128,8 @@ exports['init'] = {
       "glossfield": "field3",
       "pouchname": pouchname
     });
-    console.log(igt);
-    test.equal(igt.gloss, '?-?-?-?', 'should be just question marks.');
+    console.log(fields);
+    test.equal(fields.gloss, '?-?-?-?', 'should be just question marks.');
     test.done();
   },
 
@@ -1424,7 +1424,7 @@ exports['init'] = {
     console.log("lexicon");
     console.log(glosser.lexicon);
 
-    var igt = glosser.guessGlossFromMorphemes({
+    var fields = glosser.guessGlossFromMorphemes({
       "utterance": "maqutmg'p",
       "utterancefield": "field1",
       "morphemes": "maqu-tm-g-'p",
@@ -1433,8 +1433,8 @@ exports['init'] = {
       "glossfield": "field3",
       "pouchname": pouchname
     });
-    test.equal(igt.gloss, 'eat-vti-3-past', 'should be eat-VTI-3-PAST.');
-    test.notStrictEqual(igt.glossAlternates, ['eat-vti-3-past'], 'should offer alternate glosses');
+    test.equal(fields.gloss, 'eat-vti-3-past', 'should be eat-VTI-3-PAST.');
+    test.notStrictEqual(fields.glossAlternates, ['eat-vti-3-past'], 'should offer alternate glosses');
     test.done();
   },
 
