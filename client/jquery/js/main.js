@@ -47,4 +47,30 @@ $(function($) {
     resultAsStringDelimiter: '',
     selectionCls: 'customTagBackground'
   });
+
+
+  $('input#inputUsers').magicSuggest({
+    id: 'inputUsers',
+    data: ["lingllama", "gretchen", "jo", "bill", "susan", "pita", "caroline", "amanda", "bronwyn", "pedro", "mateo", "anna", "ixkamej", "nino", "dato", "taha", "faizal","magda"],
+    name: 'users',
+    groupBy: 'word',
+    displayField: 'value',
+    maxSelection: null,
+    resultAsString: true,
+    resultAsStringDelimiter: '',
+    selectionCls: 'customTagBackground'
+  });
+
+  $('input#inputCrossReferences').magicSuggest({
+    id: 'inputCrossReferences',
+    data: ["nay|IMP", "ta|ACC", "nok'|CL.animal", "Erqe qankuna qaparinaywankichis","Qanta erqe qaparinaysunkichis", "D43A71E0-EFE3-4BC4-AABA-FDD152890326", "B31DB3E0-1F43-4FE0-9299-D1C85F0C4C62", "AF976245-1157-47DE-8B6A-28A7542D3497", "23489BDF-68EF-46C9-BB06-4C8EC9D77F48", "944C2CDE-74B8-4322-8940-72E8DD134841", "ED5A2292-659E-4B27-A352-9DBC5065207E", "924726BF-FAE7-4472-BD99-A13FCB5FEEFF"],
+    name: 'crossReferences',
+    groupBy: 'word',
+    displayField: 'value',
+    maxSelection: null,
+    resultAsString: true,
+    resultAsStringDelimiter: '',
+    useCommaKey: false,
+    selectionCls: 'customTagBackground'
+  });
 });
