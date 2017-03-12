@@ -2186,7 +2186,7 @@ var LexiconFactory = require("./Lexicon").LexiconFactory;
                 localStorage.removeItem(x);
               }
             }
-            localStorage.setItem(pouchname + "reducedRules", JSON.stringify(reducedRules));
+            // localStorage.setItem(pouchname + "reducedRules", JSON.stringify(reducedRules));
           }
 
           self.currentCorpusName = pouchname;
@@ -2736,8 +2736,8 @@ var LexiconFactory = require("./Lexicon").LexiconFactory;
           return;
         }
         // only confident morphemes
-        confidenceCutOff = confidenceCutOff | 1;
-        if (relation.key.previous.confidence < confidenceCutOff || relation.key.subsequent.confidence < confidenceCutOff) {
+        // confidenceCutOff = confidenceCutOff | 1;
+        if (confidenceCutOff && relation.key.previous.confidence < confidenceCutOff || relation.key.subsequent.confidence < confidenceCutOff) {
           return;
         }
         relation.key.source = relation.key.previous;
@@ -3132,7 +3132,7 @@ var Q = require("q");
 
 
   var Lexicon = function(values, equals, compare, getDefault) {
-    console.log("\tConstructing Lexicon... ");
+    console.log("\tConstructing Lexicon... ", values);
     // SortedSet.apply(this, [values, equals, compare, getDefault]);
     SortedSet.apply(this, Array.prototype.slice.call(arguments, 1));
     // if (!compare) {
@@ -3178,7 +3178,8 @@ var Q = require("q");
         if (!this.localDOM) {
           return;
         }
-        listElement = this.localDOM.createElement("ul");
+        var localDOM = this.localDOM;
+        listElement = localDOM.createElement("ul");
         element.appendChild(listElement);
 
         this.forEach(function(entry) {
@@ -3189,7 +3190,7 @@ var Q = require("q");
             return;
           }
 
-          listItemView = this.localDOM.createElement("li");
+          listItemView = localDOM.createElement("li");
           listItemView.__data__ = entry;
           listItemView.style.opacity = listItemView.__data__.igt.confidence;
           if (listItemView.__data__.igt.morphemes) {
@@ -3197,15 +3198,15 @@ var Q = require("q");
           }
           // console.log("\tCreating Node view for " + listItemView.id);
 
-          headword = this.localDOM.createElement("span");
+          headword = localDOM.createElement("span");
           headword.contentEditable = 'true';
           headword.classList.add("headword");
           listItemView.__data__.igt.headword = listItemView.__data__.igt.headword || listItemView.__data__.igt.morphemes ? listItemView.__data__.igt.morphemes : listItemView.__data__.igt.gloss;
 
-          contexts = this.localDOM.createElement("span");
+          contexts = localDOM.createElement("span");
           contexts.classList.add("utteranceContext");
 
-          discussion = this.localDOM.createElement("span");
+          discussion = localDOM.createElement("span");
           discussion.contentEditable = 'true';
           discussion.classList.add("discussion");
           discussion.hidden = true;
@@ -3217,7 +3218,7 @@ var Q = require("q");
             }
             /* Create the json View if its not there, otherwise toggle its hidden */
             if (!e.target.jsonView) {
-              e.target.jsonView = this.localDOM.createElement("textarea");
+              e.target.jsonView = localDOM.createElement("textarea");
               e.target.appendChild(e.target.jsonView);
               e.target.jsonView.classList.add("lexiconJSON");
               discussion.hidden = !discussion.hidden;
@@ -3261,7 +3262,7 @@ var Q = require("q");
             console.log(window.currentlySelectedNode.__data__);
           };
 
-          fieldList = this.localDOM.createElement("dl");
+          fieldList = localDOM.createElement("dl");
 
           var component = {
             listItemView: listItemView,
@@ -3282,8 +3283,8 @@ var Q = require("q");
                 headword.classList.add(field + ":" + listItemView.__data__.igt[field]);
                 discussion.classList.add(field + ":" + listItemView.__data__.igt[field]);
 
-                fieldDTElement = this.localDOM.createElement("dt");
-                fieldLabelElement = this.localDOM.createElement("span");
+                fieldDTElement = localDOM.createElement("dt");
+                fieldLabelElement = localDOM.createElement("span");
                 fieldLabelElement.innerHTML = field;
                 fieldLabelElement.classList.add("fieldlabel");
                 fieldLabelElement.classList.add(field);
@@ -3291,8 +3292,8 @@ var Q = require("q");
                 fieldDTElement.appendChild(fieldLabelElement);
                 fieldList.appendChild(fieldDTElement);
 
-                fieldDDElement = this.localDOM.createElement("dd");
-                fieldElement = this.localDOM.createElement("span");
+                fieldDDElement = localDOM.createElement("dd");
+                fieldElement = localDOM.createElement("span");
                 fieldElement.contentEditable = 'true';
                 fieldElement.classList.add("fieldvalue");
                 fieldElement.classList.add(field);
@@ -3335,7 +3336,7 @@ var Q = require("q");
               "<-": "'Example: '+listItemView.__data__.utteranceContext.join(' Example: ')"
             },
             "listItemView.hidden": {
-              "<-": "listItemView.__data__.igt.confidence < this.localDOM.getElementById('lexiconConfidenceThreshold').value / 10"
+              "<-": "listItemView.__data__.igt.confidence < localDOM.getElementById('lexiconConfidenceThreshold').value / 10"
             }
           });
 
