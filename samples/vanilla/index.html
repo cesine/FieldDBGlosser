@@ -4,15 +4,15 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/topcoat/0.8.0/css/topcoat-desktop-light.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/topcoat/0.8.0/css/topcoat-desktop-dark.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 </head>
 
-<body class="light">
+<body class="dark">
 
     <table>
         <tr class="browser-controls" id="lexiconBrowserControls">
-            <td >
+            <td colspan="2">
                 <header>
                     <h2 hidden>Lexicon Browser</h2>
 
@@ -71,24 +71,28 @@
             </div>
         </td>
     </tr>
-     <tr>
-        <td>
-            <h2>Computational Field Workshop Tutorial</h2>
-            <div id="glosser2"></div>
-            <div id="lexicon2" class="lexicon"></div>
-        </td>
-    </tr>
     <tr>
-        <td>
-            <h2>ETI3 Data Tutorial</h2>
+        <td colspan="2">
+            <h2>glossersample-quechua</h2>
             <div id="glosser"></div>
-            <div id="lexicon" class="lexicon">
+            <div id="lexicon" class="lexicon">  
             </div>
         </td>
     </tr>
-
     <tr>
-        <td >
+        <td>
+            <h2>glossersample-cherokee</h2>
+            <div id="glosser2"></div>
+            <div id="lexicon2" class="lexicon"></div>
+        </td>
+        <td>
+            <h2>glossersample-inuktitut</h2>
+            <div id="glosser3"></div>
+            <div id="lexicon3" class="lexicon"></div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
             <textarea  hidden id="lexiconJSON" class="topcoat-textarea lexiconJSON"  placeholder="Lexicon data">
             </textarea>
         </div>
